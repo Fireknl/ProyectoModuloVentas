@@ -89,3 +89,38 @@ This allows realistic testing scenarios for the main application.
 ## Author
 
 Santiago Perez Farfan
+
+## Delivery 2 Update
+
+The project now includes a preliminary functional version of the complete sales processing module.
+
+### Implemented Features
+
+#### GenerateInfoFiles
+- Generates `products.csv` with pseudo-random product data.
+- Generates `salesmen_info.csv` with pseudo-random salesman information.
+- Generates multiple `sales_*.csv` files with pseudo-random sales records.
+- Ensures consistency between salesman information and sales files.
+- Displays success or error messages after execution.
+
+#### main
+- Reads all generated input files automatically.
+- Processes salesman sales data from all `sales_*.csv` files.
+- Calculates total revenue per salesman.
+- Calculates total quantity sold per product.
+- Generates `salesmen_report.csv` ordered by total revenue (descending).
+- Generates `products_report.csv` ordered by quantity sold (descending).
+- Displays success or error messages after execution.
+
+### Pending Improvements
+- Improve JavaDoc documentation across all classes and methods.
+- Add stronger validation for malformed input files.
+- Detect inconsistent data such as invalid product IDs or negative values.
+- Refine pseudo-random data generation for more realistic test data.
+- Evaluate implementation of optional bonus features.
+
+### Execution Order
+1. Run `GenerateInfoFiles`
+2. Run `main`
+
+Generated files will be placed in the `generated_files` folder.
