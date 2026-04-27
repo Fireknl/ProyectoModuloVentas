@@ -8,6 +8,12 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
+/**
+ * This class is responsible for generating all the input CSV files
+ * required for the sales processing system.
+ * It creates products, salesmen information, and sales files.
+ */
+
 public class GenerateInfoFiles {
 
     private static final String OUTPUT_FOLDER = "generated_files";
@@ -29,6 +35,11 @@ public class GenerateInfoFiles {
     private static final Map<Long, String> SALESMAN_NAMES = new HashMap<Long, String>();
 
     private static int generatedProductsCount = 0;
+    
+    /**
+     * Main method that triggers the generation of all test files.
+     * It creates products, salesmen, and sales data.
+     */
 
     public static void main(String[] args) {
         try {
@@ -54,6 +65,12 @@ public class GenerateInfoFiles {
         }
     }
 
+    /**
+     * Generates a CSV file with product information.
+     * @param productsCount number of products to generate
+     * @throws IOException if file cannot be written
+     */
+    
     public static void createProductsFile(int productsCount) throws IOException {
         BufferedWriter writer = null;
         generatedProductsCount = productsCount;
@@ -76,6 +93,12 @@ public class GenerateInfoFiles {
             }
         }
     }
+    
+    /**
+     * Generates a CSV file with salesmen information.
+     * @param salesmanCount number of salesmen to generate
+     * @throws IOException if file cannot be written
+     */
 
     public static void createSalesManInfoFile(int salesmanCount) throws IOException {
         BufferedWriter writer = null;
@@ -102,6 +125,14 @@ public class GenerateInfoFiles {
             }
         }
     }
+    
+    /**
+     * Generates a CSV file with sales for a specific salesman.
+     * @param randomSalesCount number of sales records
+     * @param name salesman name
+     * @param id salesman identifier
+     * @throws IOException if file cannot be written
+     */
 
     public static void createSalesMenFile(int randomSalesCount, String name, long id) throws IOException {
         BufferedWriter writer = null;

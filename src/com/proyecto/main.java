@@ -13,6 +13,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * This class processes the generated CSV input files and creates
+ * the final sales reports required by the project.
+ * It reads products, salesmen, and sales files without requesting user input.
+ */
+
 public class main {
 
     private static final String INPUT_FOLDER = "generated_files";
@@ -21,6 +27,11 @@ public class main {
     private static final String SALESMEN_REPORT_FILE = INPUT_FOLDER + File.separator + "salesmen_report.csv";
     private static final String PRODUCTS_REPORT_FILE = INPUT_FOLDER + File.separator + "products_report.csv";
 
+    /**
+     * Main method that loads input files, processes sales information,
+     * and generates the salesmen and products reports.
+     */ 
+    
     public static void main(String[] args) {
         try {
             Map<String, Product> products = loadProducts(PRODUCTS_FILE);
@@ -40,6 +51,13 @@ public class main {
         }
     }
 
+    /**
+     * Loads product information from the products CSV file.
+     * @param filePath path of the products file
+     * @return a map containing all products by product ID
+     * @throws IOException if the file cannot be read
+     */
+    
     private static Map<String, Product> loadProducts(String filePath) throws IOException {
         Map<String, Product> products = new HashMap<String, Product>();
         BufferedReader reader = new BufferedReader(new FileReader(filePath));
@@ -64,6 +82,13 @@ public class main {
         return products;
     }
 
+    /**
+     * Loads salesman information from the salesmen CSV file.
+     * @param filePath path of the salesmen information file
+     * @return a map containing all salesmen by document type and document number
+     * @throws IOException if the file cannot be read
+     */
+    
     private static Map<String, Salesman> loadSalesmen(String filePath) throws IOException {
         Map<String, Salesman> salesmen = new HashMap<String, Salesman>();
         BufferedReader reader = new BufferedReader(new FileReader(filePath));
@@ -89,6 +114,14 @@ public class main {
         reader.close();
         return salesmen;
     }
+    
+    /**
+     * Searches and processes all sales files located in the input folder.
+     * @param products map of available products
+     * @param salesmen map of registered salesmen
+     * @param soldProducts map used to accumulate sold quantities by product
+     * @throws IOException if the folder or any sales file cannot be read
+     */
 
     private static void processSalesFiles(Map<String, Product> products, Map<String, Salesman> salesmen,
                                           Map<String, Integer> soldProducts) throws IOException {
@@ -106,6 +139,15 @@ public class main {
             }
         }
     }
+    /**
+     * Processes a single sales file and updates the total sales per salesman
+     * and the total quantity sold per product.
+     * @param file sales file to process
+     * @param products map of available products
+     * @param salesmen map of registered salesmen
+     * @param soldProducts map used to accumulate sold quantities by product
+     * @throws IOException if the sales file cannot be read
+     */
 
     private static void processSingleSalesFile(File file, Map<String, Product> products, Map<String, Salesman> salesmen,
                                                Map<String, Integer> soldProducts) throws IOException {
@@ -159,6 +201,12 @@ public class main {
 
         reader.close();
     }
+    
+    /**
+     * Writes the salesmen report sorted by total money collected in descending order.
+     * @param salesmen map containing all salesmen with their accumulated sales
+     * @throws IOException if the report file cannot be written
+     */
 
     private static void writeSalesmenReport(Map<String, Salesman> salesmen) throws IOException {
         List<Salesman> salesmenList = new ArrayList<Salesman>(salesmen.values());
@@ -185,6 +233,13 @@ public class main {
 
         writer.close();
     }
+    
+    /**
+     * Writes the products report sorted by total quantity sold in descending order.
+     * @param products map of available products
+     * @param soldProducts map containing the total quantity sold by product
+     * @throws IOException if the report file cannot be written
+     */
 
     private static void writeProductsReport(Map<String, Product> products, Map<String, Integer> soldProducts)
             throws IOException {
@@ -218,6 +273,13 @@ public class main {
 
         writer.close();
     }
+    
+    /**
+     * Builds a unique key for identifying a salesman.
+     * @param documentType salesman document type
+     * @param documentNumber salesman document number
+     * @return unique salesman key
+     */
 
     private static String buildSalesmanKey(String documentType, String documentNumber) {
         return documentType + ";" + documentNumber;
