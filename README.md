@@ -1,10 +1,14 @@
-# Sales Module Project - File Generator
+# ProyectoModuloVentas - Sales Processing System
 
-##  Description
+## Description
 
-This project consists of a Java application designed to generate pseudo-random input files that simulate a sales environment. The generated data represents products, salesmen, and sales transactions.
+This project is a Java 8 application developed in Eclipse IDE that simulates and processes a sales environment.
 
-These files serve as input for a second program that will process and analyze sales data.
+It consists of two main components:
+1. A file generator that creates pseudo-random CSV files (products, salesmen, and sales data).
+2. A processing module that reads these files, calculates results, and generates sales reports.
+
+The system works automatically without requiring user input.
 
 ---
 
@@ -20,11 +24,16 @@ These files serve as input for a second program that will process and analyze sa
 ProyectoModuloVentas  
 ├── src/  
 │    └── com/proyecto/  
-│         └── GenerateInfoFiles.java  
-└── generated_files/  
-     ├── products.csv  
-     ├── salesmen_info.csv  
-     └── sales_*.csv  
+│         ├── GenerateInfoFiles.java  
+│         └── main.java  
+├── generated_files/  
+│     ├── products.csv  
+│     ├── salesmen_info.csv  
+│     ├── sales_*.csv  
+│     ├── salesmen_report.csv  
+│     └── products_report.csv  
+├── conslusion.txt  
+└── README.md  
 
 ---
 
@@ -45,7 +54,25 @@ Contains product information:
 ProductID;ProductName;Price  
 
 ---
+## Output Reports
 
+### salesmen_report.csv
+
+Contains:
+DocumentType;DocumentNumber;FirstName;LastName;TotalSold
+
+- Shows total money collected by each salesman
+- Sorted in descending order (highest to lowest)
+
+---
+
+### products_report.csv
+
+Contains:
+ProductID;ProductName;Price;TotalQuantitySold
+
+- Shows total quantity sold per product
+- Sorted in descending order
 ### salesmen_info.csv
 
 Contains salesman information:
@@ -112,15 +139,16 @@ The project now includes a preliminary functional version of the complete sales 
 - Generates `products_report.csv` ordered by quantity sold (descending).
 - Displays success or error messages after execution.
 
-### Pending Improvements
-- Improve JavaDoc documentation across all classes and methods.
-- Add stronger validation for malformed input files.
-- Detect inconsistent data such as invalid product IDs or negative values.
-- Refine pseudo-random data generation for more realistic test data.
-- Evaluate implementation of optional bonus features.
 
 ### Execution Order
 1. Run `GenerateInfoFiles`
 2. Run `main`
 
 Generated files will be placed in the `generated_files` folder.
+
+## Conclusion
+
+A file named `conslusion.txt` is included in the project. It contains a summary of:
+- Learning outcomes
+- Professional applications
+- Difficulties encountered during development
